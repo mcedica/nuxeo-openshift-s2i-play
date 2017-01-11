@@ -12,6 +12,10 @@ docker build  -t nuxeoplay .
 ```
 s2i build .  nuxeoplay -e NUXEO_PACKAGES=nuxeo-web-ui -e NUXEO_DEV_MODE=false --loglevel=5 test-nuxeo
 ```
+or
+```
+s2i build .  nuxeoplay -e NUXEO_PACKAGES="$STUDIO_PROJECT" -e NUXEO_CLID="$CLID" --loglevel=5 test-nuxeo
+```
 
 *  RUN CUSTOMIZED IMANGE
 ```

@@ -3,8 +3,9 @@ FROM       openjdk:8-jdk
 MAINTAINER Nuxeo <packagers@nuxeo.com>
 
 # Create Nuxeo user
-ENV NUXEO_USER nuxeo
-RUN useradd -m -d /home/$NUXEO_USER -s /bin/bash $NUXEO_USER
+ENV NUXEO_USER 1001
+ENV NUXEOUSER nuxeo
+RUN useradd -m -d /home/$NUXEOUSER -s /bin/bash $NUXEO_USER
 
 
 

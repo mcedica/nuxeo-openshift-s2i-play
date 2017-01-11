@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 NUXEO_CONF=$NUXEO_HOME/bin/nuxeo.conf
+echo "In assemble phase"
 echo $NUXEO_CONF
   if [ ! -f $NUXEO_HOME/configured ]; then
 
@@ -109,6 +110,7 @@ EOF
 
   # instance.clid
   if [ -n "$NUXEO_CLID" ]; then
+    echo "Registering Nuxeo Instance."
     printf "%b\n" "$NUXEO_CLID" >> $NUXEO_DATA/instance.clid
   fi
 
@@ -123,5 +125,5 @@ EOF
     gosu $NUXEO_USER nuxeoctl mp-install $NUXEO_PACKAGES --relax=false --accept=true
   fi
   echo "Configuration done --------------------------:"
-  
+
   gosu $NUXEO_USER nuxeoctl mp-list
