@@ -39,8 +39,8 @@ Using the CLI:
 oc new-project deploynuxeo
 ```
 
-2. Security constraints. If the Dockerfile for the base builder image does not contain an USER 1000- , the build fails fails on run ALLOWED_UIDS. This should fix the problem:
- https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-specific-guidelines  ( section Support Arbitrary User IDs), but it does not work :)
+2. Security constraints. If the Dockerfile for the base builder image does not contain an USER 1000- , the build fails on run ALLOWED_UIDS. This should fix the problem:
+ https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-specific-guidelines  ( section Support Arbitrary User IDs), but I did not manage to make it work:)
  
  Temporary fix:
  ```
@@ -54,12 +54,12 @@ oc new-project deploynuxeo
   ```
   system:serviceaccount:deploynuxeo:builder
   ```
-  3. Build builder base image ( skip if the image already exists in internal/public repository)
+3. Build builder base image ( skip if the image already exists in internal/public repository)
   ```
   oc new-build https://github.com/mcedica/nuxeo-openshift-s2i-play.git --name nuxeo-oo-image-builder
    ```
    
-   4. Build docker image with complete configuration based on the previous base image. Pass all the needed configuration as env variables 
+4. Build docker image with complete configuration based on the previous base image. Pass all the needed configuration as env variables 
   
   ```  
    oc new-build nuxeo-oo-image-builder~https://github.com/mcedica/nuxeo-openshift-s2i-play.git   --strategy=source -e NUXEO_PACKAGES=nuxeo-web-ui
@@ -70,7 +70,7 @@ oc new-project deploynuxeo
    oc new-build nuxeo-oo-image-builder~https://github.com/mcedica/nuxeo-openshift-s2i-play.git   --strategy=source -e NUXEO_PACKAGES=mcedica-SANDBOX -e NUXEO_CLID="$clid"
    
    ```  
-   5. Deploy and start app ( Step 4 and 5 can be merged into one, but because of a bug in CLI 1.3 env vars can not be passed to the builder in new-app command - fixed in 1.5, see https://github.com/openshift/origin/issues/8795 )
+5. Deploy and start app ( Step 4 and 5 can be merged into one, but because of a bug in CLI 1.3 env vars can not be passed to the builder in new-app command - fixed in 1.5, see https://github.com/openshift/origin/issues/8795 )
    
    ```
    oc new-app nuxeo-openshift-s2i-play
