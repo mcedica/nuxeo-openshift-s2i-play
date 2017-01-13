@@ -1,3 +1,0 @@
-#!/bin/bash -e
-echo "Before running application"
-exec gosu $NUXEO_USER  nuxeoctl console
