@@ -115,7 +115,7 @@ EOF
        echo "This value is a secret, reading value:"
        NUXEO_CLID="$(cat $NUXEO_CLID)"
     fi
-    SECRET_FILE = $NUXEO_CLID
+    SECRET_FILE=$NUXEO_CLID
     echo "!!!REMOVE ME (I'm showing vital info) your NUXEO_CLID="
     echo $NUXEO_CLID
     printf "%b\n" "$NUXEO_CLID"
