@@ -84,7 +84,7 @@ oc new-project deploynuxeo
 
 
 - json file withe the following format, where secret data is base64 encoded.
-nuxeoSecrets.json :
+<p>nuxeoSecrets.json:</p>
   ```{
   "apiVersion": "v1",
   "kind": "Secret",
@@ -99,8 +99,7 @@ nuxeoSecrets.json :
 }```  
 - create the secret from the above file
 ```
-oc create -f nuxeoSecrets.json
-``` 
+oc create -f nuxeoSecrets.json``` 
 
 2. Inject the secret in the buid phase to use in the docker image
 <p>The secrets are injected as files, abailable at the root folder only during the build phase, the name of file is the name of the secret </p>
@@ -110,11 +109,10 @@ oc create -f nuxeoSecrets.json
 <b>Because in the nuxeostudiosecret, we have an entry key for clid, now we can just pass it as:  </b>
 ``` 
 oc new-build nuxeo-oo-image-builder~https://github.com/mcedica/nuxeo-openshift-s2i-play.git  --name=nuxeo-configured-image  --strategy=source --build-secret=nuxeostudiosecret -e NUXEO_CLID=clid
-
 ``` 
+
 3. Create a new app ( it will deploy and run the above image)
 ``` 
-oc new-app nuxeo-configured-image
-```
+oc new-app nuxeo-configured-image```
 
 
