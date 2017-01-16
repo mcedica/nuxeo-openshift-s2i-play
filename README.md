@@ -112,7 +112,7 @@ oc new-build nuxeo-oo-image-builder~https://github.com/mcedica/nuxeo-openshift-s
 ``` 
 
 3. Create a new app ( it will deploy and run the above image)
-``` 
-oc new-app nuxeo-configured-image```
+
+``` oc new-app nuxeo-configured-image```
 
 
