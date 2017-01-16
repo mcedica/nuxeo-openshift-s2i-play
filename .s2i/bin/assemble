@@ -110,7 +110,14 @@ EOF
 
   # instance.clid
   if [ -n "$NUXEO_CLID" ]; then
-    echo "Registering Nuxeo Instance."
+    echo "Registering Nuxeo Instance..."
+    if [ -f "$NUXEO_CLID" ]; then
+       echo "This value is a secret, reading value:"
+       NUXEO_CLID="$(cat $NUXEO_CLID)"
+    fi
+    echo "!!!REMOVE ME (I'm showing vital info) your NUXEO_CLID="
+    echo $NUXEO_CLID
+    printf "%b\n" "$NUXEO_CLID"
     printf "%b\n" "$NUXEO_CLID" >> $NUXEO_DATA/instance.clid
   fi
 
