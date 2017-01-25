@@ -54,6 +54,18 @@ oc new-project deploynuxeo
   ```
   system:serviceaccount:deploynuxeo:builder
   ```
+  https://blog.openshift.com/getting-any-docker-image-running-in-your-own-openshift-cluster/
+  
+   ```
+ oc edit scc anyuid
+  ```
+  
+  and add to users:
+    ```
+  - system:serviceaccount:deploynuxeo:default
+    ```
+  
+  
 3. Build builder base image ( skip if the image already exists in internal/public repository)
   ```
   oc new-build https://github.com/mcedica/nuxeo-openshift-s2i-play.git --name nuxeo-oo-image-builder
